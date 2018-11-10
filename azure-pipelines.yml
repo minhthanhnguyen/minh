@@ -16,4 +16,4 @@ steps:
 #- script: dotnet publish --output $(Build.ArtifactStagingDirectory)
 #  displayName: 'dotnet publish --output $(Build.ArtifactStagingDirectory)'
     
-#- task: PublishBuildArtifacts@1
+- task: PublishBuildArtifacts@1
