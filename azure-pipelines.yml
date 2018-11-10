@@ -13,9 +13,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: $(Agent.BuildDirectory)
-    targetFolder: $(Build.ArtifactStagingDirectory)
+- script: dotnet publish --output $(Build.ArtifactStagingDirectory)
+  displayName: 'dotnet publish --output $(Build.ArtifactStagingDirectory)'
     
 - task: PublishBuildArtifacts@1
