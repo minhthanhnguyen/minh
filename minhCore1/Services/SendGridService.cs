@@ -11,7 +11,7 @@ namespace minhCore1.Services
         {
             try
             {
-                var client = new SendGridClient("");
+                var client = new SendGridClient("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");
 
                 // Send a Single Email using the Mail Helper
                 var from = new EmailAddress("minhthanhnguyen82@gmail.com", "Minh Nguyen");
