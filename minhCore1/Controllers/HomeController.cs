@@ -4,12 +4,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using minhCore1.Models;
 
 namespace minhCore1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -25,6 +33,8 @@ namespace minhCore1.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+
+            _logger.LogInformation("Home > Contact visited. {RequestTime}", DateTime.Now);
 
             return View();
         }
