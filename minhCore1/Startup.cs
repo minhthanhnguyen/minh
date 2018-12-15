@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using minhCore1.Services;
 
 namespace minhCore1
@@ -38,8 +39,10 @@ namespace minhCore1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddAzureWebAppDiagnostics();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,7 +59,7 @@ namespace minhCore1
 
 
             app.ApplicationServices.ConfigureQueue();
-            app.ApplicationServices.UseScheduler(scheduler => scheduler.Schedule<ScheduledEmailTask>().DailyAtHour(22));
+            app.ApplicationServices.UseScheduler(scheduler => scheduler.Schedule<ScheduledEmailTask>().DailyAtHour(16));
 
             app.UseMvc(routes =>
             {
