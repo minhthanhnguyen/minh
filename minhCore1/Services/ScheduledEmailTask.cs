@@ -7,6 +7,7 @@ namespace minhCore1.Services
     {
         public async Task Invoke()
         {
+            //return Task.Run(() => System.Diagnostics.Debug.WriteLine("yikes"));
             await SendGridService.SendTestEmail();
         }
     }
