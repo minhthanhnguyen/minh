@@ -7,11 +7,11 @@ namespace minhCore1.Services
 {
     public static class SendGridService
     {
-        public static async Task SendTestEmail()
+        public static async Task SendTestEmail(string apiKey)
         {
             try
             {
-                var client = new SendGridClient("");
+                var client = new SendGridClient(apiKey);
 
                 // Send a Single Email using the Mail Helper
                 var from = new EmailAddress("minhthanhnguyen82@gmail.com", "Minh Nguyen");
