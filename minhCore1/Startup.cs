@@ -27,7 +27,7 @@ namespace minhCore1
             services.AddEvents();
             services.AddScheduler();
 
-            services.AddSingleton<ScheduledEmailTask>();
+            services.AddTransient<ScheduledEmailTask>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -61,7 +61,7 @@ namespace minhCore1
 
 
             app.ApplicationServices.ConfigureQueue();
-            app.ApplicationServices.UseScheduler(scheduler => scheduler.Schedule<ScheduledEmailTask>().DailyAt(18, 30));
+            app.ApplicationServices.UseScheduler(scheduler => scheduler.Schedule<ScheduledEmailTask>().Daily());
 
             app.UseMvc(routes =>
             {
